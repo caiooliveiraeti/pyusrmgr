@@ -5,7 +5,6 @@ from commands.listuser import ListUserByProfile
 from commands.countuser import CountSuperUser
 from commands.removeuser import RemoveUser
 
-
 from storage.memory.user import InMemoryUserStorage
 
 
@@ -36,6 +35,7 @@ class CommandRunner:
         for c in self.commands:
             print(c.help())
         print("'help' Lista todos os comandos")
+
 
 def main():
     user_storage = InMemoryUserStorage()
