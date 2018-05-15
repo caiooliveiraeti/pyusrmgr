@@ -1,4 +1,4 @@
-from user import *
+from storage.user import *
 
 
 class UserStorage:
@@ -11,4 +11,6 @@ class UserStorage:
 
     def find_by_profile(self, profile: UserProfile): pass
 
-    def count_superusers(self): pass
+    def find_by_date_last_access(self, date_last_access: str): pass
+
+    def count_by_profile(self): pass

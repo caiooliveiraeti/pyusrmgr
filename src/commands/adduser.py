@@ -1,6 +1,6 @@
 from commands.command import Command
 from storage.userstorage import UserStorage
-from user import *
+from storage.user import *
 
 
 class AddUser(Command):
@@ -9,8 +9,12 @@ class AddUser(Command):
         self.user_storage = user_storage
 
     def execute(self):
-        user = self.input_user()
-        self.user_storage.add(user)
+        user_input = self.input_user()
+        user = self.user_storage.find_by_nickname(user_input.nickname)
+        if user:
+            print("Usuário " + user.nickname + " já existe")
+        else:
+            self.user_storage.add(user_input)
 
     def name(self):
         return "add"
