@@ -5,7 +5,7 @@ from commands.listuser import ListUserByProfile
 from commands.countuser import CountSuperUser
 from commands.removeuser import RemoveUser
 
-from storage.memory.user import InMemoryUserStorage
+from storage.json.user import JsonFileUserStorage
 
 
 class CommandRunner:
@@ -38,7 +38,7 @@ class CommandRunner:
 
 
 def main():
-    user_storage = InMemoryUserStorage()
+    user_storage = JsonFileUserStorage()
 
     runner = CommandRunner()
     runner.add(AddUser(user_storage))
