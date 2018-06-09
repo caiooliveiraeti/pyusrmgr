@@ -1,7 +1,6 @@
 from storage.userstorage import UserStorage
 from storage.user import *
 import json
-import inspect
 
 
 class JsonFileUserStorage(UserStorage):
