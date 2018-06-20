@@ -7,15 +7,15 @@ class JsonFileUserStorage(UserStorage):
 
     def __init__(self):
         self.users = []
-        self.loadFromFile()
+        self.load_from_file()
 
     def add(self, user: User):
         self.users.append(user)
-        self.dumpToFile()
+        self.dump_to_file()
 
     def remove_by_nickname(self, nickname: str):
         self.users = list(filter(lambda user: user.nickname != nickname, self.users))
-        self.dumpToFile()
+        self.dump_to_file()
 
     def find_by_nickname(self, nickname: str):
         users = list(filter(lambda user: user.nickname == nickname, self.users))
@@ -31,19 +31,19 @@ class JsonFileUserStorage(UserStorage):
     def count_by_profile(self, profile: UserProfile):
         return len(list(filter(lambda user: user.profile == profile, self.users)))
 
-    def dumpToFile(self):
+    def dump_to_file(self):
         users_file = open('users.json', 'w')
         json_data = json.dumps(self.users, cls=JsonUser, indent=2, sort_keys=False)
         users_file.write(json_data)
         users_file.close()
 
-    def loadFromFile(self):
+    def load_from_file(self):
         try:
             users_file = open('users.json', 'r')
             self.users = list(map(lambda user: JsonUser.userDecode(user), json.load(users_file)))
             users_file.close()
         except FileNotFoundError:
-            self.dumpToFile()
+            self.dump_to_file()
 
 
 class JsonUser(json.JSONEncoder):
